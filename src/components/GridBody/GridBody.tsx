@@ -16,7 +16,7 @@ export default function GridBody(props: IProps) {
             return <div className={styles.root} style={props.hight}>
                 {events.map((event_, index) => {
                     if (section.ID === event_.SECTION_ID) {
-                        return <Sheet>{event_.NAME}</Sheet>
+                        return <Sheet style={{background: section.COLOR}}  className={styles.eventWrapper}>{event_.NAME}</Sheet>
                     }
                 })}
             </div>

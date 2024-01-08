@@ -23,8 +23,8 @@ export default function DayControll() {
         setDayTo(date || dayjs());
     }
 
-    return  <Box style={{display: !(showMode === "day") ? "none" : "block"}}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}  >
+    return  <Box style={{ paddingTop: 0, display: !(showMode === "day") ? "none" : "block"}}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer
                 components={[
                     'DatePicker',
@@ -33,16 +33,18 @@ export default function DayControll() {
                     'StaticDatePicker',
                 ]}
             >
-                <DemoItem label="">
+                <DemoItem label="" >
                     <StaticDatePicker
                         defaultValue={dayjs('2022-04-17')}
                         className={styles.root}
+
                         sx={{
                             width: 320,
                             marginLeft: "15px",
-                            padding: 0,
+                            paddingTop: 0,
 
                         }}
+                        orientation={"landscape"}
                         value={dayFrom}
                         onChange={date => handleDayChange(date)}
                     />

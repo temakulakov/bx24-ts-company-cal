@@ -1,4 +1,13 @@
 .root {
+  border-radius: 5px;
   padding-top: 0 !important;
+  padding: 0!important;
   display: flex;
+  & > div:first-child {
+    display: none
+  }
+  & > div:last-child {
+    display: none;
+  }
+
 }

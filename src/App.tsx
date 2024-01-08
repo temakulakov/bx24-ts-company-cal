@@ -43,8 +43,8 @@ function App() {
                     {
                         type: 'company_calendar',
                         ownerId: '',
-                        from: dateFrom,
-                        to: dateTo,
+                        from: dateFrom.format('DD.MM.YYYY'),
+                        to: dateTo.format('DD.MM.YYYY'),
                     }
                 );
                 setEvents(eventsResponse.data.result);
@@ -63,7 +63,7 @@ function App() {
   return (
     <div className="App">
       <Box
-          style={{width: show === "day" ? "75%" : "100%",
+          style={{marginTop: "8px",width: show === "day" ? "75%" : "100%",
           transition: "0.15s all ease-in-out",
           }}
           sx={{

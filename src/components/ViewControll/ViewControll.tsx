@@ -1,10 +1,10 @@
 import styles from './ViewControll.module.scss';
 import React from "react";
 import {Box, Button, Select, Option} from "@mui/joy";
-import {ButtonGroup} from "@mui/joy";
 import {useRecoilState} from "recoil";
 import {calendarViewAtom} from "../../store/atoms";
 import IncControll from "../IncControll/IncControll";
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 
 export default function ViewControll() {
     const [show, setShow] = useRecoilState(calendarViewAtom);
@@ -32,6 +32,10 @@ export default function ViewControll() {
     };
 
     return <Box  className={styles.root}>
+        <Button endDecorator={<AssessmentOutlinedIcon />} style={{marginRight: "10px"}} size="sm" variant="outlined"
+                color="neutral">
+            Отчеты
+        </Button>
         <Select
             color="neutral"
             disabled={false}

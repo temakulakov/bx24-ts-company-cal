@@ -9,6 +9,8 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 
 export default function IncControll() {
+
+
     const showMode = useRecoilValue(calendarViewAtom);
     const dateFrom = useRecoilValue(selectDateTimeFromAtom);
     dayjs.locale('ru'); // Установите локаль 'ru'

@@ -53,6 +53,9 @@ dependencies:
   '@types/react-dom':
     specifier: ^18.2.18
     version: 18.2.18
+  customParseFormat:
+    specifier: link:dayjs/plugin/customParseFormat
+    version: link:dayjs/plugin/customParseFormat
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10

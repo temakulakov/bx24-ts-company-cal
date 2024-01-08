@@ -2,4 +2,6 @@
   display: flex;
   width: 100%;
   height: fit-content ;
+  max-height: 700px;
+  overflow-y: scroll;
 }

@@ -8,13 +8,19 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import ruLocale from 'dayjs/locale/ru'
 import DayControll from "./components/DayControll/DayControll";
-import {useRecoilValue} from "recoil";
-import {calendarViewAtom} from "./store/atoms";
+import {useRecoilState, useRecoilValue} from "recoil";
+import {calendarViewAtom, selectDateTimeFromAtom, selectDateTimeToAtom} from "./store/atoms";
 import ControllPanel from "./components/ControllPanel/ControllPanel";
 import Grid from "./components/Grid/Grid";
 
 function App() {
     const show = useRecoilValue(calendarViewAtom);
+    const [dateFrom, setDateFrom] = useRecoilState(selectDateTimeFromAtom);
+    const [dateTo, setDateTo] = useRecoilState(selectDateTimeToAtom);
+    React.useEffect(() => {
+        setDateFrom(dayjs(dayjs()))
+        setDateTo(dayjs(dayjs()))
+    }, []);
   return (
     <div className="App">
       <Box

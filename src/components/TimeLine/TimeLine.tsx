@@ -46,7 +46,7 @@ const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные п�
                     return <>{dayArray.map((item, index) => (
                         <div key={index} className={styles.timelineItem}>
                             <div/>
-                            <div className={styles.timelineLabel}><Sheet>{item}:00</Sheet></div>
+                            <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}>{item}:00</Sheet></div>
                             <div className={styles.timelineLine}></div>
                         </div>
                     ))}</>;
@@ -55,7 +55,7 @@ const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные п�
                 return <>{weekShortsDays.map((item, index) => (
                     <div key={index} className={styles.timelineItem} style={{width: "165px"}}>
                         <div/>
-                        <div className={styles.timelineLabel}><Sheet><>{item.label}</></Sheet></div>
+                        <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}><>{item.label}</></Sheet></div>
                         <div className={styles.timelineLine}></div>
                     </div>
                 ))}</>;
@@ -64,7 +64,7 @@ const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные п�
                 return <>{monthArray .map((item, index) => (
                     <div key={index} className={styles.timelineItem}>
                         <div/>
-                        <div className={styles.timelineLabel}><Sheet>{item}</Sheet></div>
+                        <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}>{item}</Sheet></div>
                         <div className={styles.timelineLine}></div>
                     </div>
                 ))}</>;

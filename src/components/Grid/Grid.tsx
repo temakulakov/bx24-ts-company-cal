@@ -8,9 +8,11 @@ import {useRecoilValue} from "recoil";
 import {calendarViewAtom} from "../../store/atoms";
 
 
-interface IHeight {
+export interface IHeight {
     height: string;
 }
+
+
 
 export default function Grid() {
     const view = useRecoilValue(calendarViewAtom);
@@ -26,7 +28,7 @@ export default function Grid() {
                 setHight({height: "910px"});
                 break;
             case 'month':
-               setHight({height: "4000px"});
+               setHight({height: "4030px"});
                 break;
             default:
                 break;
@@ -38,8 +40,8 @@ export default function Grid() {
             <TimeLine/>
         </Box>
         <Box className={styles.body} height={"100%"}>
-            <Box className={styles.header}><GridHeader/></Box>
-            <Box className={styles.header} style={hight}><GridBody/></Box>
+            <Box className={styles.headerr}><GridHeader/></Box>
+            <Box className={styles.header}  style={hight}><GridBody hight={hight}/></Box>
         </Box>
 
     </Box>

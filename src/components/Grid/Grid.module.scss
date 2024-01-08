@@ -13,7 +13,7 @@
 
 .header {
   display: flex;
-  overflow-y: scroll;
+  overflow: scroll;
 
 }
 
@@ -24,4 +24,5 @@
   background-color: white; /* Необходимый фон, чтобы элемент выделялся на странице */
   z-index: 100; /* Установите z-index по вашему усмотрению */
   /* Другие стили по вашему выбору */
+  overflow: scroll;
 }

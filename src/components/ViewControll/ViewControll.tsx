@@ -18,7 +18,6 @@ export default function ViewControll() {
     ];
 
     React.useEffect(() => {
-        console.log(show);
     }, [show]);
 
         const handleClick = (view: 'day' | 'week' | 'month') => {

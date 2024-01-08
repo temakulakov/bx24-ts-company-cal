@@ -37,7 +37,6 @@ const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные п�
     const dayArray = Array.from({ length: 24 }, (_, index) => index);
     const weekArray = Array.from({ length: 24 }, (_, index) => index);
     const monthArray = Array.from({ length: timeFrom.daysInMonth() }, (_, index) => index + 1);
-    console.log(dayArray);
 
     // Логика для отображения временной шкалы в зависимости от типа отображения
     const renderTimeline = () => {

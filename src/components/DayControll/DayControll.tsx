@@ -16,7 +16,6 @@ export default function DayControll() {
     const showMode = useRecoilValue(calendarViewAtom);
 
     React.useEffect(() => {
-        console.log(dayFrom);
     }, [dayFrom]);
 
     const handleDayChange = (date: Dayjs | null) => {
@@ -37,6 +36,7 @@ export default function DayControll() {
                 <DemoItem label="">
                     <StaticDatePicker
                         defaultValue={dayjs('2022-04-17')}
+                        className={styles.root}
                         sx={{
                             width: 320,
                             marginLeft: "15px",
@@ -47,7 +47,6 @@ export default function DayControll() {
                         onChange={date => handleDayChange(date)}
                     />
                 </DemoItem>
-                {/*<BasicDateTimePicker/>*/}
             </DemoContainer>
         </LocalizationProvider>
     </Box>

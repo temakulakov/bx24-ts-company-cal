@@ -39,9 +39,12 @@ export default function Grid() {
         <Box>
             <TimeLine/>
         </Box>
-        <Box className={styles.body} height={"100%"}>
+        <Box style={hight}>
             <Box className={styles.headerr}><GridHeader/></Box>
-            <Box className={styles.header}  style={hight}><GridBody hight={hight}/></Box>
+            <Box className={styles.body} height={"100%"}>
+
+                <Box className={styles.header} ><GridBody hight={hight}/></Box>
+            </Box>
         </Box>
 
     </Box>

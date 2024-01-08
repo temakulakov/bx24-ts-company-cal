@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import dayjs from "dayjs";
-import {IEventObject, ISectionObject} from "./types";
+import {IEventObject, IModal, ISectionObject} from "./types";
 
 export const calendarViewAtom = atom<'day' | 'week' | 'month' >({
     key: 'calendarViewAtom',
@@ -26,4 +26,16 @@ export const sectionsAtom = atom<Array<ISectionObject>>({
 export const eventsAtom = atom<Array<IEventObject>>({
     key: 'eventsAtom',
     default: [],
+});
+
+export const modalAtom = atom<IModal>({
+    key: 'modalAtom',
+    default: {
+        action: "null",
+        name: "",
+        filial: null,
+        dateFrom: dayjs(dayjs().subtract(1, 'hour')),
+        dateTo: dayjs(dayjs().add(1, 'hour')),
+        description: null,
+    }
 })

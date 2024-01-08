@@ -13,6 +13,7 @@ import {calendarViewAtom, eventsAtom, sectionsAtom, selectDateTimeFromAtom, sele
 import ControllPanel from "./components/ControllPanel/ControllPanel";
 import Grid from "./components/Grid/Grid";
 import axios from "axios";
+import ModalC from "./components/ModalC/ModalC";
 
 function App() {
     const show = useRecoilValue(calendarViewAtom);
@@ -76,6 +77,7 @@ function App() {
             <Grid/>
       </Box>
         <DayControll/>
+        <ModalC/>
     </div>
   );
 }

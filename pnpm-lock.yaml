@@ -53,6 +53,9 @@ dependencies:
   '@types/react-dom':
     specifier: ^18.2.18
     version: 18.2.18
+  adapter:
+    specifier: link:@mui/pickers/adapter
+    version: link:@mui/pickers/adapter
   axios:
     specifier: ^1.6.5
     version: 1.6.5

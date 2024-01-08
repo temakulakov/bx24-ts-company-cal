@@ -2,13 +2,13 @@ import styles from './ViewControll.module.scss';
 import React from "react";
 import {Box, Button, Select, Option} from "@mui/joy";
 import {useRecoilState} from "recoil";
-import {calendarViewAtom} from "../../store/atoms";
+import {calendarViewAtom, modalAtom} from "../../store/atoms";
 import IncControll from "../IncControll/IncControll";
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 
 export default function ViewControll() {
     const [show, setShow] = useRecoilState(calendarViewAtom);
-
+    const [modal, setModal] = useRecoilState(modalAtom);
 
 
     const Buttons = [
@@ -31,8 +31,8 @@ export default function ViewControll() {
         setShow(newValue!);
     };
 
-    return <Box  className={styles.root}>
-        <Button endDecorator={<AssessmentOutlinedIcon />} style={{marginRight: "10px"}} size="sm" variant="outlined"
+    return <Box className={styles.root}>
+        <Button onClick={() => setModal({...modal, action: "new"})} endDecorator={<AssessmentOutlinedIcon />} style={{marginRight: "10px"}} size="sm" variant="outlined"
                 color="neutral">
             Отчеты
         </Button>

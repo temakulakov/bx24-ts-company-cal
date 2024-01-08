@@ -1,3 +1,5 @@
+import dayjs, {Dayjs} from "dayjs";
+
 export interface ISectionObject {
     ACCESS: object;
     CAL_DAV_CON: boolean;
@@ -92,4 +94,13 @@ export interface ATTENDEELISTEntity {
 export interface AttendeesEntityListEntity {
     entityId: string;
     id: number;
+}
+
+export interface IModal {
+    action: "open" | "new" | "report" | "null";
+    name:  string | undefined;
+    filial: string | number | null | ISectionObject;
+    dateFrom: Dayjs | null;
+    dateTo: Dayjs | null;
+    description: string | null;
 }

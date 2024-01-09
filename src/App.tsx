@@ -27,6 +27,29 @@ function App() {
         setDateFrom(dayjs(dayjs()))
         setDateTo(dayjs(dayjs()))
     }, []);
+
+    React.useEffect(() => {
+        switch (show) {
+            case 'day':
+                setDateFrom(dateFrom);
+                setDateTo(dateFrom);
+                break;
+            case 'week':
+                const currentDayOfWeek: number = dateFrom.day();
+                const daysToMonday: number = (currentDayOfWeek + 7 - 1) % 7;
+                const previousMonday: dayjs.Dayjs = dateFrom.subtract(daysToMonday, 'day');
+                setDateFrom(previousMonday);
+                setDateTo(dateFrom.add(6, 'day'));
+                break;
+            case 'month':
+                setDateFrom(dateFrom.startOf('month'));
+                setDateTo(dateFrom.endOf('month'));
+                break;
+            default:
+                break;
+        }
+    }, [show])
+
     React.useEffect(() => {
         const fetchData = async () => {
             try {
@@ -61,25 +84,26 @@ function App() {
     React.useEffect(() => {
         console.log(sections, events);
     }, [sections, events]);
-  return (
-    <div className="App">
-      <Box
-          style={{marginTop: "8px",width: show === "day" ? "75%" : "100%",
-          transition: "0.15s all ease-in-out",
-          }}
-          sx={{
-            height: 'fit-content', backgroundColor: 'white',
-            borderRadius: 1,
-            marginRight: "10px"
-          }}
-      >
-          <ControllPanel/>
-            <Grid/>
-      </Box>
-        <DayControll/>
-        <ModalC/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Box
+                style={{
+                    marginTop: "8px", width: show === "day" ? "75%" : "100%",
+                    transition: "0.15s all ease-in-out",
+                }}
+                sx={{
+                    height: 'fit-content', backgroundColor: 'white',
+                    borderRadius: 1,
+                    marginRight: "10px"
+                }}
+            >
+                <ControllPanel/>
+                <Grid/>
+            </Box>
+            <DayControll/>
+            <ModalC/>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,31 @@
+.root {
+  display: flex;
+  //height: 95%;
+}
+
+.leftSide {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.rightSide {
+  height: 100%;
+  width: 75%;
+  padding-top: 10px;
+
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+
+.buttonPanel {
+  display: flex;
+}

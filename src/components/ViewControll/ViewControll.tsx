@@ -32,7 +32,7 @@ export default function ViewControll() {
     };
 
     return <Box className={styles.root}>
-        <Button onClick={() => setModal({...modal, action: "new"})} endDecorator={<AssessmentOutlinedIcon />} style={{marginRight: "10px"}} size="sm" variant="outlined"
+        <Button onClick={() => setModal({...modal, action: "report"})} endDecorator={<AssessmentOutlinedIcon />} style={{marginRight: "10px"}} size="sm" variant="outlined"
                 color="neutral">
             Отчеты
         </Button>

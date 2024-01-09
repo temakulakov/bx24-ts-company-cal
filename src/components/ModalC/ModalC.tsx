@@ -21,6 +21,7 @@ import {DatePicker, DateTimePicker, DesktopTimePicker} from "@mui/x-date-pickers
 import styles from "./Modal.module.scss";
 import {Check, FormatBold, FormatItalic} from "@mui/icons-material";
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import ReportPage from "../ReportPage/ReportPage";
 dayjs.locale('ru');
 
 export default function ModalC() {
@@ -36,17 +37,104 @@ export default function ModalC() {
     }, [modal]);
 
 
-    const deleteEvent = () => {}
-    const updateEvent = () => {}
+    const deleteEvent = () => {
+        // const postData = {
+        //     // Ваши данные для отправки на сервер Битрикс24
+        //     // Например, event.NAME, dateFromInput, timeFromInput и так далее
+        //     id: event.ID,
+        //     type: 'company_calendar',
+        //     ownerId: '',
+        // };
+        //
+        // axios.post(URL_KEY + 'calendar.event.delete', postData)
+        //     .then(response => {
+        //         // Обработка успешного ответа
+        //     })
+        //     .catch(error => {
+        //         // Обработка ошибок
+        //         console.error('Ошибка при добавлении события', error.response.data);
+        //     }).finally(() => {
+        //     setDate({
+        //         dateFrom: date.dateFrom,
+        //         dateTo: date.dateTo,
+        //     });
+        //     handleClose()
+        // });
+    }
+    const updateEvent = () => {
+        // const postData = {
+        //     // Ваши данные для отправки на сервер Битрикс24
+        //     // Например, event.NAME, dateFromInput, timeFromInput и так далее
+        //     id: event.ID,
+        //     type: 'company_calendar',
+        //     ownerId: '',
+        //     from: `${dateFromInput.format('DD.MM.YYYY')} ${timeFromInput.format('HH:mm:ss')}`,
+        //     to: `${dateToInput.format('DD.MM.YYYY')} ${timeToInput.format('HH:mm:ss')}`,
+        //     name: headerInput !== "" ? headerInput : "Новое событие",
+        //     description: bodyInput,
+        //     section: sectionInput.ID,
+        // };
+        //
+        // axios.post(URL_KEY + 'calendar.event.update', postData)
+        //     .then(response => {
+        //         // Обработка успешного ответа
+        //     })
+        //     .catch(error => {
+        //         // Обработка ошибок
+        //         console.error('Ошибка при добавлении события', error.response.data);
+        //     }).finally(() => {
+        //     setDate({
+        //         dateFrom: date.dateFrom,
+        //         dateTo: date.dateTo,
+        //     });
+        //     handleClose()
+        //
+        // });
 
-    const addEvent = () => {}
+    }
+
+    const addEvent = () => {
+        // const postData = {
+        //     // Ваши данные для отправки на сервер Битрикс24
+        //     // Например, event.NAME, dateFromInput, timeFromInput и так далее
+        //     type: 'company_calendar',
+        //     ownerId: '',
+        //     from: `${dateFromInput.format('DD.MM.YYYY')} ${timeFromInput.format('HH:mm:ss')}`,
+        //     to: `${dateToInput.format('DD.MM.YYYY')} ${timeToInput.format('HH:mm:ss')}`,
+        //     name: headerInput !== "" ? headerInput : "Новое событие",
+        //     description: bodyInput,
+        //     section: sectionInput.ID,
+        // };
+        //
+        // axios.post(URL_KEY + 'calendar.event.add', postData)
+        //     .then(response => {
+        //         // Обработка успешного ответа
+        //     })
+        //     .catch(error => {
+        //         // Обработка ошибок
+        //         console.error('Ошибка при добавлении события', error.response.data);
+        //     }).finally(() => {
+        //     setDate({
+        //         dateFrom: date.dateFrom,
+        //         dateTo: date.dateTo,
+        //     });
+        //     handleClose()
+        // });
+    }
 
 
     return (
         <>
             <Modal
                 open={modal.action === "new" || modal.action === "open"}
-                onClose={() => setModal({ ...modal, action: "null" })}
+                onClose={() => setModal({
+                    action: "null",
+                    name: "",
+                    filial: null,
+                    dateFrom: dayjs(dayjs().subtract(1, 'hour')),
+                    dateTo: dayjs(dayjs().add(1, 'hour')),
+                    description: null,
+                })}
             >
                 <ModalDialog>
                     <ModalClose />
@@ -115,7 +203,7 @@ export default function ModalC() {
                             </DemoContainer>
                         </LocalizationProvider>
                         <FormControl>
-                            <FormLabel>Your comment</FormLabel>
+                            <FormLabel>Описание события</FormLabel>
                             <Textarea
                                 placeholder="Type something here…"
                                 minRows={3}
@@ -181,7 +269,14 @@ export default function ModalC() {
                             />
                         </FormControl>
                         <div className={styles.buttonsGroup}>
-                            <Button variant="outlined" onClick={() => setModal({ ...modal, action: "null" })}>Отменить</Button>
+                            <Button variant="outlined" onClick={() => setModal({
+                                action: "null",
+                                name: "",
+                                filial: null,
+                                dateFrom: dayjs(dayjs().subtract(1, 'hour')),
+                                dateTo: dayjs(dayjs().add(1, 'hour')),
+                                description: null,
+                            })}>Отменить</Button>
 
                             {modal.action === "open" ? <Button  onClick={updateEvent} >
                                 Сохранить
@@ -207,11 +302,14 @@ export default function ModalC() {
                     dateTo: dayjs(dayjs().add(1, "hour")),
                     description: null,
                 })}
+
             >
-                <ModalDialog>
+                <ModalDialog
+                    style={{width: "1000px", height: "100%"}}
+                >
                     <ModalClose/>
-                    <DialogTitle>Modal Dialog</DialogTitle>
-                    <DialogContent>This is a modal dialog.</DialogContent>
+                    <DialogTitle>Формирование отчета</DialogTitle>
+                    <DialogContent><ReportPage/></DialogContent>
                 </ModalDialog>
             </Modal>
         </>

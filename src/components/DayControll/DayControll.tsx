@@ -9,6 +9,7 @@ import {DemoContainer, DemoItem} from "@mui/x-date-pickers/internals/demo";
 import {StaticDatePicker} from "@mui/x-date-pickers";
 import dayjs, {Dayjs} from "dayjs";
 import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+dayjs.locale('ru');
 
 export default function DayControll() {
     const [dayFrom, setDayFrom] = useRecoilState(selectDateTimeFromAtom);

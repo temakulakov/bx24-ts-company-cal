@@ -10,4 +10,5 @@ code {
 
 body {
   background-color: #EEF2F4;
+  overflow: hidden;
 }

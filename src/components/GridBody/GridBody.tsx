@@ -1,7 +1,7 @@
 import styles from './GridBody.module.scss';
 import React from 'react';
-import {useRecoilValue} from "recoil";
-import {calendarViewAtom, eventsAtom, sectionsAtom, selectDateTimeFromAtom} from "../../store/atoms";
+import {useRecoilState, useRecoilValue} from "recoil";
+import {calendarViewAtom, eventsAtom, modalAtom, sectionsAtom, selectDateTimeFromAtom} from "../../store/atoms";
 import {Sheet} from "@mui/joy";
 import {IHeight} from "../Grid/Grid";
 import dayjs from "dayjs";
@@ -13,6 +13,7 @@ export default function GridBody(props: IProps) {
     const sections = useRecoilValue(sectionsAtom);
     const viewMode = useRecoilValue(calendarViewAtom);
     const dateFrom = useRecoilValue(selectDateTimeFromAtom);
+    const [modal, setModal] = useRecoilState(modalAtom);
     const [incElement, setIncElement] = React.useState<number>(2.16666);
 
     React.useEffect(() => {
@@ -24,14 +25,25 @@ export default function GridBody(props: IProps) {
                 setIncElement(910 / 7);
                 break;
             case 'month':
-                setIncElement(2.16666);
+                setIncElement((dateFrom.daysInMonth() * 130));
                 break;
         }
     }, [viewMode]);
 
     return <>
         {sections.map((section, index) => {
-            return <div className={styles.root} style={props.hight}>
+            return <div
+                className={styles.root}
+                style={props.hight}
+                onClick={() => {setModal({
+                    action: "new",
+                    name: "",
+                    filial: section.NAME,
+                    dateFrom: dayjs(dayjs().subtract(1, "hour")),
+                    dateTo: dayjs(dayjs().add(1, "hour")),
+                    description: null,
+                })}}
+            >
                 {events.map((event_, index) => {
                     if (section.ID === event_.SECTION_ID) {
                         const currentDateFrom: dayjs.Dayjs = dayjs(event_.DATE_FROM);
@@ -42,7 +54,24 @@ export default function GridBody(props: IProps) {
                         const height: number = (minutesSinceStartOfDayTo - minutesSinceStartOfDayFrom) * incElement;
                         const top: number = (minutesSinceStartOfDayFrom) * incElement;
 
-                        return <Sheet style={{background: section.COLOR, top: `${top}px`, height: `${height}px`}}  className={styles.eventWrapper}>{event_.NAME}<br/>{event_.DATE_FROM}<br/>{event_.DATE_TO}</Sheet>
+                        return <Sheet
+                            style={{background: section.COLOR, top: `${top}px`, height: `${height}px`}}
+                            className={styles.eventWrapper}
+                            onClick={() => {setModal({
+                                action: "open",
+                                name: event_.NAME,
+                                filial: event_.SECTION_ID,
+                                dateFrom: dayjs(dayjs(event_.DATE_FROM)),
+                                dateTo: dayjs(dayjs(event_.DATE_FROM)),
+                                description: "",
+                            })}}
+                        >
+                            {event_.NAME}
+                            <br/>
+                            {event_.DATE_FROM}
+                            <br/>
+                            {event_.DATE_TO}
+                        </Sheet>
                     }
                 })}
             </div>

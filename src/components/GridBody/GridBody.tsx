@@ -38,7 +38,7 @@ export default function GridBody(props: IProps) {
                 onClick={() => {setModal({
                     action: "new",
                     name: "",
-                    filial: section.NAME,
+                    filial: section,
                     dateFrom: dayjs(dayjs().subtract(1, "hour")),
                     dateTo: dayjs(dayjs().add(1, "hour")),
                     description: null,
@@ -60,7 +60,7 @@ export default function GridBody(props: IProps) {
                             onClick={() => {setModal({
                                 action: "open",
                                 name: event_.NAME,
-                                filial: event_.SECTION_ID,
+                                filial: section,
                                 dateFrom: dayjs(dayjs(event_.DATE_FROM)),
                                 dateTo: dayjs(dayjs(event_.DATE_FROM)),
                                 description: "",

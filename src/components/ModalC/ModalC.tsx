@@ -153,7 +153,7 @@ export default function ModalC() {
                     </DialogTitle>
                     <DialogContent>
                         <Autocomplete
-                            placeholder="Outlined variant (default)"
+                            placeholder="Филиал"
                             options={sections}
                             value={sections[(typeof modal.filial === "number") ? modal.filial : 0]}
                             onChange={(event, newValue) => setModal({...modal, filial: newValue})}
@@ -193,19 +193,21 @@ export default function ModalC() {
                                     ampm={false}
                                     value={dayjs(modal.dateFrom)}
                                     onChange={(value, context) => setModal({...modal, dateFrom: value})}
+                                    format="DD.MM.YYYY HH:mm"
                                 />
                                 —
                                 <DateTimePicker
                                     ampm={false}
                                     value={dayjs(modal.dateTo)}
-                                    onChange={(value, context) => setModal({...modal, dateFrom: value})}
+                                    onChange={(value, context) => setModal({...modal, dateTo: value})}
+                                    format="DD.MM.YYYY HH:mm"
                                 />
                             </DemoContainer>
                         </LocalizationProvider>
                         <FormControl>
                             <FormLabel>Описание события</FormLabel>
                             <Textarea
-                                placeholder="Type something here…"
+                                placeholder="Здесь место описания события"
                                 minRows={3}
                                 endDecorator={
                                     <Box

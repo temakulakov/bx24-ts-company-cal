@@ -155,17 +155,17 @@ export default function ModalC() {
                         <Autocomplete
                             placeholder="Филиал"
                             options={sections}
-                            value={sections[(typeof modal.filial === "number") ? modal.filial : 0]}
-                            onChange={(event, newValue) => setModal({...modal, filial: newValue})}
+                            value={modal.filial}
+                            onChange={(event, newValue = sections[0]) => setModal({...modal, filial: newValue})}
                             getOptionLabel={(option) => option.NAME}
-                            sx={{width: 300}}
+                            sx={{width: "100%"}}
                             startDecorator={
                                 <div
                                     style={{
                                         width: "20px",
                                         height: "20px",
                                         borderRadius: "50%",
-                                        backgroundColor: "red",
+                                        backgroundColor: modal.filial?.COLOR,
                                     }}
                                 />
                             }
@@ -193,14 +193,14 @@ export default function ModalC() {
                                     ampm={false}
                                     value={dayjs(modal.dateFrom)}
                                     onChange={(value, context) => setModal({...modal, dateFrom: value})}
-                                    format="DD.MM.YYYY HH:mm"
+                                    format="DD.MM.YYYY HH:mm:ss"
                                 />
                                 —
                                 <DateTimePicker
                                     ampm={false}
                                     value={dayjs(modal.dateTo)}
                                     onChange={(value, context) => setModal({...modal, dateTo: value})}
-                                    format="DD.MM.YYYY HH:mm"
+                                    format="DD.MM.YYYY HH:mm:ss"
                                 />
                             </DemoContainer>
                         </LocalizationProvider>
@@ -209,72 +209,21 @@ export default function ModalC() {
                             <Textarea
                                 placeholder="Здесь место описания события"
                                 minRows={3}
-                                endDecorator={
-                                    <Box
-                                        sx={{
-                                            display: 'flex',
-                                            gap: 'var(--Textarea-paddingBlock)',
-                                            pt: 'var(--Textarea-paddingBlock)',
-                                            borderTop: '1px solid',
-                                            borderColor: 'divider',
-                                            flex: 'auto',
-                                        }}
-                                    >
-                                        <IconButton
-                                            variant="plain"
-                                            color="neutral"
-                                            onClick={(event) => setAnchorEl(event.currentTarget)}
-                                        >
-                                            <FormatBold/>
-                                            <KeyboardArrowDown/>
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={anchorEl}
-                                            open={Boolean(anchorEl)}
-                                            onClose={() => setAnchorEl(null)}
-                                            size="sm"
-                                            placement="bottom-start"
-                                            sx={{'--ListItemDecorator-size': '24px'}}
-                                        >
-                                            {['200', 'normal', 'bold'].map((weight) => (
-                                                <MenuItem
-                                                    key={weight}
-                                                    selected={fontWeight === weight}
-                                                    onClick={() => {
-                                                        setFontWeight(weight);
-                                                        setAnchorEl(null);
-                                                    }}
-                                                    sx={{fontWeight: weight}}
-                                                >
-                                                    <ListItemDecorator>
-                                                        {fontWeight === weight && <Check/>}
-                                                    </ListItemDecorator>
-                                                    {weight === '200' ? 'lighter' : weight}
-                                                </MenuItem>
-                                            ))}
-                                        </Menu>
-                                        <IconButton
-                                            variant={italic ? 'soft' : 'plain'}
-                                            color={italic ? 'primary' : 'neutral'}
-                                            aria-pressed={italic}
-                                            onClick={() => setItalic((bool) => !bool)}
-                                        >
-                                            <FormatItalic/>
-                                        </IconButton>
-                                    </Box>
-                                }
                                 sx={{
                                     minWidth: 300,
+                                    minHeight: 300,
                                     fontWeight,
                                     fontStyle: italic ? 'italic' : 'initial',
                                 }}
+                                value={modal.description || ''}
+                                onChange={(event) => setModal({...modal, description: event.target.value})}
                             />
                         </FormControl>
                         <div className={styles.buttonsGroup}>
                             <Button variant="outlined" onClick={() => setModal({
                                 action: "null",
                                 name: "",
-                                filial: null,
+                                filial: sections[0],
                                 dateFrom: dayjs(dayjs().subtract(1, 'hour')),
                                 dateTo: dayjs(dayjs().add(1, 'hour')),
                                 description: null,
@@ -299,7 +248,7 @@ export default function ModalC() {
                 onClose={() => setModal({
                     action: "null",
                     name: "",
-                    filial: null,
+                    filial: sections[0],
                     dateFrom: dayjs(dayjs().subtract(1, "hour")),
                     dateTo: dayjs(dayjs().add(1, "hour")),
                     description: null,
@@ -307,7 +256,7 @@ export default function ModalC() {
 
             >
                 <ModalDialog
-                    style={{width: "1000px", height: "100%"}}
+                    style={{width: "100%", height: "100%"}}
                 >
                     <ModalClose/>
                     <DialogTitle>Формирование отчета</DialogTitle>

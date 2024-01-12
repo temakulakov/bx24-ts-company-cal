@@ -14,6 +14,7 @@ interface TimelineProps {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные пропсы */ }) => {
+    const dateFrom = useRecoilValue(selectDateTimeFromAtom);
     const getNearestMonday = (yourDate: string) => {
         // Преобразование строки в объект dayjs
         const dateObject = dayjs(yourDate, { format: 'YYYY-MM-DD' });
@@ -55,7 +56,7 @@ const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные п�
                 return <>{weekShortsDays.map((item, index) => (
                     <div key={index} className={styles.timelineItem} style={{width: "165px"}}>
                         <div/>
-                        <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}><>{item.label}</></Sheet></div>
+                        <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}><>{item.label}<br/>{dateFrom.add(index, 'day').date()}.{dateFrom.month() + 1}</></Sheet></div>
                         <div className={styles.timelineLine}></div>
                     </div>
                 ))}</>;
@@ -64,7 +65,7 @@ const Timeline: React.FC<TimelineProps> = ({ /* Дополнительные п�
                 return <>{monthArray .map((item, index) => (
                     <div key={index} className={styles.timelineItem}>
                         <div/>
-                        <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}>{item}</Sheet></div>
+                        <div className={styles.timelineLabel}><Sheet style={{fontSize: 12}}><b>{item}</b></Sheet></div>
                         <div className={styles.timelineLine}></div>
                     </div>
                 ))}</>;

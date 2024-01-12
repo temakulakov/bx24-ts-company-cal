@@ -65,7 +65,7 @@ export default function ReportPage() {
             },
         ],
         width: 1500,
-        height: 700,
+        height: 600,
         sx: {
             [`.${axisClasses.left} .${axisClasses.label}`]: {
                 transform: 'translate(-20px, 0)',
@@ -258,6 +258,18 @@ export default function ReportPage() {
             {/*</Select>*/}
 
             <BarChart
+                dataset={dataset}
+                xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
+                series={[
+                    { dataKey: 'london', label: 'Основные события', valueFormatter },
+                    { dataKey: 'paris', label: 'Главное здание', valueFormatter },
+                    { dataKey: 'newYork', label: 'М/Кв М.М. Плисецкой', valueFormatter },
+                    { dataKey: 'seoul', label: 'Д/М М.Н. Ермоловой', valueFormatter },
+                ]}
+                {...chartSetting}
+            />
+
+            <BarChart
                 width={1300}
                 height={500}
                 series={[
@@ -273,19 +285,6 @@ export default function ReportPage() {
                 xAxis={[{ data: xLabels, scaleType: 'band' }]}
                 yAxis={[{ id: 'leftAxisId' }, { id: 'rightAxisId' }]}
                 rightAxis="rightAxisId"
-            />
-
-            <BarChart
-
-                dataset={dataset}
-                xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
-                series={[
-                    { dataKey: 'london', label: 'Основные события', valueFormatter },
-                    { dataKey: 'paris', label: 'Главное здание', valueFormatter },
-                    { dataKey: 'newYork', label: 'М/Кв М.М. Плисецкой', valueFormatter },
-                    { dataKey: 'seoul', label: 'Д/М М.Н. Ермоловой', valueFormatter },
-                ]}
-                {...chartSetting}
             />
 
             <div className={styles.buttonPanel}>

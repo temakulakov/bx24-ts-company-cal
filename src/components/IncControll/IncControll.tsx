@@ -21,7 +21,7 @@ export default function IncControll() {
             case 'week':
                 return 'Эта неделя';
             case 'month':
-                return dateFrom.format('MMMM');
+                return dayjs().format('MMMM');
             default:
                 return '';
         }
@@ -36,13 +36,48 @@ export default function IncControll() {
     const handleClick = (action: '-' | '+' | '=') => {
         switch (action) {
             case '-':
-                setDateFrom(dateFrom.subtract(1, 'days'));
+                if (showMode === 'day') {
+                    setDateFrom(dateFrom.subtract(1, 'days'));
+                }
+                if (showMode === 'week') {
+                    setDateFrom(dateFrom.subtract(1, 'weeks'));
+                    setDateTo(dateTo.subtract(1, 'weeks'));
+                }
+                if (showMode === 'month') {
+                    setDateFrom(dateFrom.subtract(1, 'month'));
+                    setDateTo(dateTo.subtract(1, 'month'));
+                }
                 break;
             case '+':
-                setDateFrom(dateFrom.add(1, 'days'));
+                if (showMode === 'day') {
+                    setDateFrom(dateFrom.add(1, 'days'));
+                }
+                if (showMode === 'week') {
+                    setDateFrom(dateFrom.add(1, 'weeks'));
+                    setDateTo(dateTo.add(1, 'weeks'));
+                }
+                if (showMode === 'month') {
+                    setDateFrom(dateFrom.add(1, 'month'));
+                    setDateTo(dateTo.add(1, 'month'));
+                }
                 break;
             case '=':
                 setDateFrom(dayjs(dayjs()));
+                if (showMode === 'day') {
+                    setDateFrom(dayjs());
+                    setDateTo(dayjs());
+                }
+                if (showMode === 'week') {
+                    const currentDayOfWeek: number = dayjs().day();
+                    const daysToMonday: number = currentDayOfWeek;
+                    const previousMonday: dayjs.Dayjs = dayjs().subtract(daysToMonday, 'day');
+                    setDateFrom(previousMonday);
+                    setDateTo(dateFrom.add(6, 'day'));
+                }
+                if (showMode === 'month') {
+                    setDateFrom(dateFrom.set('month', dayjs().month()));
+                    setDateTo(dateTo.set('month', dayjs().month()));
+                }
                 break;
             default:
                 break;

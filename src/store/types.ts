@@ -99,7 +99,7 @@ export interface AttendeesEntityListEntity {
 export interface IModal {
     action: "open" | "new" | "report" | "null";
     name:  string | undefined;
-    filial: string | number | null | ISectionObject;
+    filial: ISectionObject | null | undefined;
     dateFrom: Dayjs | null;
     dateTo: Dayjs | null;
     description: string | null;
